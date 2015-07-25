@@ -1,0 +1,170 @@
+/* LESS Document */
+
+/*Переходы---------------------------------------------*/
+.transition(@transition) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -o-transition: @transition;
+    -ms-transition: @transition;
+    transition: @transition;
+}
+
+.transition3(@transition1,@transition2, @transition3 ) {
+    -webkit-transition:@transition1,@transition2, @transition3 ;
+    -moz-transition: @transition1,@transition2, @transition3 ;
+    -o-transition: @transition1,@transition2, @transition3 ;
+    -ms-transition: @transition1,@transition2, @transition3 ;
+    transition:@transition1,@transition2, @transition3 ;
+}
+
+ .my_opacity(@opacity)
+ { 
+-ms-opacity:@opacity;
+-moz-opacity:@opacity;
+-webkit-opacity:@opacity;
+ opacity:@opacity;}	
+
+.my_trasform(@transform){
+-o-transform: @transform;
+	-ms-transform:@transform;
+ -moz-transform: @transform; 
+-webkit-transform: @transform ;
+ transform: @transform ;  
+}
+
+  .ponter{cursor: pointer;}	
+  
+   
+.cross_radial_gradient(@type,@1color, @2color, @bg_color ){ 
+background: -o-radial-gradient(@type, @1color, @2color )   @bg_color ;
+background: -ms-radial-gradient(@type, @1color, @2color )   @bg_color ;
+background:  -moz-radial-gradient(@type, @1color, @2color )   @bg_color ;
+background: -webkit-radial-gradient(@type, @1color, @2color )   @bg_color ; 
+background: linear-radial-gradient(@type, @1color, @2color )   @bg_color ;
+}
+
+.transition_flower( 
+
+@flower_transform ,
+@flower_box-shadow , 
+@flower_opacity )
+{
+    -webkit-transition: 
+-webkit-transform @flower_transform ,
+-webkit-box-shadow @flower_box-shadow ,
+-webkit-opacity @flower_opacity ;
+ 
+  -moz-transition: 
+-moz-transform @flower_transform ,
+-moz-box-shadow @flower_box-shadow ,
+-moz-opacity @flower_opacity ;
+
+    -o-transition:  
+-o-transform @flower_transform ,
+-o-box-shadow @flower_box-shadow ,
+-o-opacity @flower_opacity ;
+
+    -ms-transition:  
+-ms-transform @flower_transform ,
+-ms-box-shadow @flower_box-shadow ,
+-ms-opacity @flower_opacity ;
+
+    transition: 
+transform @flower_transform ,
+box-shadow @flower_box-shadow ,
+opacity @flower_opacity ;
+}
+
+.size(@width,@height) { width: @width; height: @height; }
+
+ .mixin_absolute_block_center(@width:32, @height:32){ 
+ position:absolute; 
+ left:50%;
+  top: 50%; 
+  width:@width; 
+  height:@height;
+   margin-left: -@width / 2; 
+   margin-top: -@height / 2; }
+
+@flower--color:#FF0;
+
+@petal_odd--color:rgba(255,255,0,0.7  );
+@petal_even--color: #E90;
+@petal_odd_size: 170px ;
+@petal_even_size: 120px ;
+@PageBg--color:darken(@petal_even--color, 20%) ; 
+
+	.flower_petal(){
+	box-shadow: @petal_even--color 0px 0px  40px  20px,
+	@petal_even--color 0px 0px  60px  20px inset,
+	@petal_odd--color @petal_odd_size 0px  1px  -3px,  
+	@petal_odd--color -@petal_odd_size 0px  1px  -3px ,  
+	@petal_odd--color 0px -@petal_odd_size  1px  -3px,  
+	@petal_odd--color 0px @petal_odd_size  1px  -3px ,
+	@petal_even--color @petal_even_size @petal_even_size  1px  -5px,
+	@petal_even--color -@petal_even_size -@petal_even_size  1px  -5px,
+	@petal_even--color @petal_even_size -@petal_even_size  1px  -5px,
+	@petal_even--color -@petal_even_size @petal_even_size  1px  -5px
+	 ;
+	}
+
+	*{			
+margin:0  ;
+padding:  0 ;
+
+/* Устанавливает плавные переходы для всех элементов страницы	*/
+.transition(0.3s);
+}  
+
+body {
+color: #fff;
+background: @PageBg--color;
+font: 14px/1.7em Verdana, Arial , sans-serif; 
+}
+
+.container{
+	width:1024px;
+	margin:0  auto;
+	height: 450px;
+	position: relative;
+}
+
+
+
+.Flower{	
+.mixin_absolute_block_center(@width:220px, @height:220px);
+
+border-radius: 50%;
+.my_trasform( rotate(0deg) scale(0.3));
+
+.transition_flower( 
+5s ease-in 0s,
+3s ease 0s, 
+3s ease 9s);
+box-shadow: @petal_even--color 0px 0px  40px  10px, @petal_even--color 0px 0px  60px  30px inset;
+background: @flower--color;
+.ponter;	
+
+animation-duration: 2s;
+animation-timing-function: ease;
+animation-delay: 0s;
+animation-direction: normal;
+animation-fill-mode: none;
+animation-iteration-count: infinite;
+
+
+}
+
+
+
+
+
+
+
+
+.Flower--active{
+.my_trasform( rotate(460deg) scale(1));
+.flower_petal;
+
+
+}
